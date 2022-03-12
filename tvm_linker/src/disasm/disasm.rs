@@ -213,7 +213,7 @@ fn disasm_text_command(m: &ArgMatches) -> core::result::Result<(), String> {
         .unwrap();
     let mut csor = Cursor::new(tvc);
     let mut roots = deserialize_cells_tree(&mut csor).map_err(|e| e.to_string())?;
-    let code = roots.remove(0).reference(0).unwrap();
+    let code = roots.remove(0);
 
     if let Ok(assigned) = shape_deprecated.captures(&code) {
         println!(";; solidity deprecated selector detected");
